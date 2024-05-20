@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live TV</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css">
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/fonts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" integrity="sha512-siarrzI1u3pCqFG2LEzi87McrBmq6Tp7juVsdmGY1Dr8Saw+ZBAzDzrGwX3vgxX1NkioYNCFOVC0GpDPss10zQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" integrity="sha512-W/zrbCncQnky/EzL+/AYwTtosvrM+YG/V6piQLSe2HuKS6cmbw89kjYkp3tWFn1dkWV7L1ruvJyKbLz73Vlgfg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" integrity="sha512-W/zrbCncQnky/EzL+/AYwTtosvrM+YG/V6piQLSe2HuKS6cmbw89kjYkp3tWFn1dkWV7L1ruvJyKbLz73Vlgfg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" integrity="sha512-P9pgMgcSNlLb4Z2WAB2sH5KBKGnBfyJnq+bhcfLCFusrRc4XdXrhfDluBl/usq75NF5gTDIMcwI1GaG5gju+Mw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" integrity="sha512-uKQ39gEGiyUJl4AI6L+ekBdGKpGw4xJ55+xyJG7YFlJokPNYegn9KwQ3P8A7aFQAUtUsAQHep+d/lrGqrbPIDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/brands.min.js" integrity="sha512-IZeK0c+nwCpZdoWLUoguVYEnBOwOnS3eTyS5Eg57YCk41x2NphG1E/vSa886whDSXG7vGauI8mmbP5PI/VC5LQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/regular.min.js" integrity="sha512-kSAGSlODsZwG7bMv/Hydyvybjk+WOz4oEqQiWYwpCxQ7/7yXMFynr2QrvNc2myZW/7wyi0IF2TXZZWMeg8AGhw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/solid.min.js" integrity="sha512-s6yNeC6faUgveCQocceGXVia7ciAebyTH7hRNazwZa2FHhnxX22qaGeb9d3a8PUKdnoHo3T3bYI/0ZOjmgWkNg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/fontawesome.min.js" integrity="sha512-64O4TSvYybbO2u06YzKDmZfLj/Tcr9+oorWhxzE3yDnmBRf7wvDgQweCzUf5pm2xYTgHMMyk5tW8kWU92JENng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand navbar-dark py-3 fixed-top">
+        <div class="container">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navmenu">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse d-flex justify-content-between" id="navmenu">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link link-light">Фильмы</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link-light">Сериалы</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link-light">Мультфильмы</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link-light">Новинки</a>
+              </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item d-flex flex-row me-3">
+                  <img src="./assets/img/search.svg" alt="" class="icon">
+                  <a  class="nav-link link-light">Поиск</a>
+                </li>
+                <li class="nav-item d-flex flex-row me-3">
+                  <img src="./assets/img/bag.svg" alt="" class="icon">
+                  <a class="nav-link link-light">Мои покупки</a>
+                </li>
+                <li class="nav-item d-flex flex-row">
+                  <img src="./assets/img/account.svg" alt="" class="icon">
+                  <a class="nav-link link-light">Мой аккаунт</a>
+                </li>
+              </ul>
+          </div>
+        </div>
+      </nav>
+        </div>
+    </nav>
+    <section class="text-light p-5 text-center p-lg-0 pt-lg-5 text-sm-start  film-stranger">
+        <div class="container stranger mt-5 rounded-3 pt-5">
+            <div class="col-md p-5 stranger-text ">
+                <h1 class="mb-4">НЕЗНАКОМЕЦ</h1>
+                <div class="text d-flex flex-row mb-4">
+                    <p class="me-3">8.9</p>
+                    <p class="me-3">2020, США</p>
+                    <p class="me-3">Триллер, драма</p>
+                    <p class="me-3">113 минут</p>
+                    <img src="./assets/img/age.svg" alt=""></p>
+                </div>
+                <h5>Софи была счастлива в браке со своим мужем Генри. Пока однажды ей не пришло анонимное письмо, предупреждение, что ей нужно бежать  от мужа. Пытаясь разгадать эту загадку, Софи впадает в ужас, ведь Генри оказывается совсем не тем человеком, которого она знает...</h5>
+        </div>
+        <div class="d-flex flex-row ms-5 buttons">
+            <a href="#" class="btn btn-1 mt-3 d-flex flex-row text-white me-3 justify-content-center align-items-center">
+                <img src="./assets/img/play.svg" class="me-2"> Смотреть бесплатно
+            </a>
+            <a href="#" class="btn btn-2 mt-3 d-flex flex-row text-white me-3 justify-content-center align-items-center">
+                <img src="./assets/img/video.svg" class="me-2"> Трейлер
+            </a>
+            <a href="#" class="btn btn-3 mt-3 text-white d-flex justify-content-center align-items-center" >
+                <img src="./assets/img/bookmark.svg" class="bookmark">
+            </a>
+        </div>
+    </section>
+    <section class="mt-5 recommendations">
+      <div class="container container-rec">
+        <h2 class="text-white">Рекомендуем посмотреть</h2>
+          <div class="me-3 row rec">
+            <div class="col-md-12 col-xl-3">
+              <div class="card text-white">
+                  <div class="card-b mt-4 film">
+                      <img src="./assets/img/2.jpg" alt="" class="rounded-3">
+                      <h5 class="card-title mt-4">Под водой</h5>
+                      <p class="card-text">
+                          Приключения, семейный
+                      </p>
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-12 col-xl-3">
+              <div class="card text-white">
+                  <div class="card-b mt-4 film">
+                      <img src="./assets/img/3.jpg" alt="" class="rounded-3">
+                      <h5 class="card-title mt-4">Мгла</h5>
+                      <p class="card-text">
+                          Ужасы, триллер
+                      </p>
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-12 col-xl-3 ">
+              <div class="card text-white">
+                  <div class="card-b mt-4 film">
+                      <img src="./assets/img/4.jpg" alt="" class="rounded-3">
+                      <h5 class="card-title mt-4">Охота</h5>
+                      <p class="card-text">
+                          Детектив, криминал, драма
+                      </p>
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-12 col-xl-3">
+              <div class="card text-white">
+                  <div class="card-b mt-4 film">
+                      <img src="./assets/img/5.jpg" alt="" class="rounded-3">
+                      <h5 class="card-title mt-4">Синхронизация</h5>
+                      <p class="card-text">
+                          Триллер, драма
+                      </p>
+                  </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </section>
+    <section>
+      <div class="container space">
+        <div class="col-md pt-5 ps-5 space-text ">
+            <h1 class="mb-4">КОСМИЧЕСКАЯ ПОДБОРКА</h1>
+            <h5>100 лучших фильмов о космосе, других планетах
+              и инопланетян. Рейтинг составлен на основании
+              оценок и рецензий пользователей Live.TV.</h5>
+    </div>
+    <div class="d-flex flex-row ms-5">
+        <a href="#" class="btn btn-1 mt-3 d-flex flex-row text-white rounded-3 justify-content-center align-items-center">
+             Смотреть подборку
+        </a>
+    </section>
+    <section>
+      <div class="container insomnia">
+        <div class="d-flex flex-row flex-insomnia">
+            <div class="col-md">
+                <ul class="list-group">
+                    <a href="#" class="btn btn-4 mt-3 d-flex flex-row text-white rounded-5 justify-content-center align-items-center">
+                        ОТКРЫТИЕ НЕДЕЛИ
+                    </a>
+                    <li class="mt-2">
+                        <h1>БЕССОННИЦА</h1>
+                    </li>
+                    <div class="text d-flex flex-row mb-1">
+                      <p class="me-3">7.8</p>
+                      <p class="me-3">2021, США</p>
+                      <p class="me-3">Драма, триллер</p>
+                      <p class="me-3">98 минут</p>
+                      <img src="./assets/img/age.svg" alt=""></p>
+                    </div>
+                    <h5>Драма, в которой стерты все границы реальности
+                      и вымысла. Потеряв сон, герой Метью Кросса потерял
+                      себя и уже не понимает, что происходит по-настоящему,
+                      а что является плодом его воображения.</h5>
+                    <h2 class="mt-3">199 ₽</h2>
+                    <div class="d-flex flex-row">
+                      <a href="#" class="btn btn-1 mt-3 d-flex flex-row text-white me-3 align-items-center justify-content-center">
+                          <img src="./assets/img/play.svg" class="me-2"> Купить и смотреть
+                      </a>
+                      <a href="#" class="btn btn-2 mt-3 d-flex flex-row text-white me-3 align-items-center justify-content-center">
+                          <img src="./assets/img/video.svg" class="me-2"> Трейлер
+                      </a>
+                      <a href="#" class="btn btn-3 mt-3 text-white d-flex align-items-center justify-content-center">
+                          <img src="./assets/img/bookmark.svg" class="bookmark">
+                      </a>
+                  </div>
+                </ul>
+                <div id="carouselExampleCaptions" class="carousel slide pt-5" data-bs-ride="carousel">
+                  <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                  </div>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <h5>Самуэль уже забыл, когда высыпался последний раз. 
+                        Он перестал понимать, где граница жизни, а где небытия. Но он пытается продолжать жить и работать, как ни в чем не бывало. Неожиданно в его жизни начали появляться необычные люди. На работе появился новый коллега, который общается только с ним. В доме появляется соседка, с которой у него закрутился роман. Самуэль продолжал жить и не обращал внимания на бессоницу. Пока однажды в его жизни начали появляться не только новые люди, но и те, кто уже давно покинул этот мир.  Теперь Самуэль пытается понять, где реальность, кто из всех окружающих его людей настоящий. И настоящий ли он сам? А может это все затянувшийся сон?</h5>
+                    </div>
+                    <div class="carousel-item">
+                      <h5>Третий слайд интересный. Мы любим животных и стараемся поддерживать тех из них, кому не посчастливилось иметь ласковых хозяев и тёплый кров. Один из проверенных способов это сделать — помочь благотворительному фонду «Луч Добра». Благодаря их труду ежегодно сотни питомцев находят свой новый дом.</h5>
+                    </div>
+                    <div class="carousel-item">
+                      <img src="./assets/img/person1.png" class="person1">
+                      <div class="col">
+                        <h5>Данилихин Егор</h5>
+                        <p>Хороший сериал-боевик с неожиданным и неординарным сюжетом!Про новую игру в казино, для самых стойких и богатых!</p>
+                      </div>
+                      <img src="./assets/img/person2.jpg" class="person1">
+                      <div class="col">
+                        <h5>Авророва София</h5>
+                        <p>Сильный фильм, неожиданный сюжет. Много известных актеров. К плюсам еще можно добавить: нет по-американски оптимистичного хэппи-энда.
+                          Рекомендую.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="col">
+              <div class="row img-7">
+                <div class="col-md">
+                    <img src="./assets/img/7.jpg" alt="" class="rounded-3">
+                </div>
+              </div>
+              <div class="row mt-5 img-8-9">
+                <div class="col">
+                  <img src="./assets/img/8.jpg" alt="" class="rounded-3">
+                </div>
+                <div class="col">
+                  <img src="./assets/img/9.jpg" alt="" class="rounded-3 img-9">
+                </div>
+              </div>
+              <div class="row mt-4 img-10-11">
+                <div class="col">
+                  <img src="./assets/img/10.jpg" alt="" class="rounded-3">
+                </div>
+                <div class="col">
+                  <img src="./assets/img/11.jpg" alt="" class="rounded-3">
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    <section class="Live_TV">
+      <div class="container">
+        <div class="row">
+          <div class="col col1">
+            <img src="./assets/img/12.png" alt="">
+          </div>
+          <div class="col col2">
+            <h3>Live TV - это ваши любимые фильмы и сериалы в отличном качестве.</h3>
+            <h5 class="mt-3">Эксклюзивные премьеры и любимые легендарные фильмы, под любое настроение и для зрителей всех возрастов и интересов. Лицензионное качество видео, отличная картинка, оригинальная озвучка, просмотр без рекламы на любом устройстве – все это доступно в видеосервисе Live TV.  Оформите подписку и смотрите любое кино на 5 разных устройствах. </h5>
+            <div class="row">
+              <div class="col">
+                <h4>40 млн</h4>
+                <h5>пользователей</h5>
+              </div>
+              <div class="col">
+                <h4>300 тысяч</h4>
+                <h5>фильмов и сериалов</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <h4>100 +</h4>
+                <h5>эксклюзивных проектов</h5>
+              </div>
+              <div class="col">
+                <h4>2 млрд часов</h4>
+                <h5>просмотра за 2020 год</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="container rounded-3 subscription d-flex flex-row">
+        <div class="column1">
+          <div class="col-md pt-5 sub-text">
+              <h1 class="mb-4">ОФОРМИТЕ ПОДПИСКУ</h1>
+              <h5>Получите полный доступ к каталогу Live. Безупречное качество
+                картинки и звука, одновременный просмотр на 5 устройствах,
+                отсутствие рекламы, загрузка на устройства для офлайн-доступа. </h5>
+          </div>
+          <div class="row">
+            <div class="col">
+              <form>
+                <div class="mb-3">
+                    <label for="first-name" class="col-form-label text-light">Имя</label>
+                    <input type="text" class="form-control inp" id="first-name">
+                </div>
+                <div class="mb-3">
+                    <label for="last-name" class="col-form-label text-light">Телефон</label>
+                    <input type="text" class="form-control inp" id="last-name">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="col-form-label text-light">E-mail</label>
+                    <input type="text" class="form-control inp" id="email">
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="tarif row">
+            <h5>Выберите тариф</h5>
+            <div class="d-flex flex-row">
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                  <label class="form-check-label text-light" for="flexRadioDefault1">
+                    1 месяц
+                  </label>
+                </div>
+              </div>
+              <div class="col ms-4">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                  <label class="form-check-label text-light" for="flexRadioDefault2">
+                    3 месяца
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-row">
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                  <label class="form-check-label text-light" for="flexRadioDefault2">
+                    6 месяцев
+                  </label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                  <label class="form-check-label text-light" for="flexRadioDefault2">
+                    12 месяцев
+                  </label>
+                </div>
+              </div>
+            </div>
+            </div>
+            <div class="form-check check mt-3">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+              <label class="form-check-label text-light" for="flexCheckDefault">Я согласен на обработку моих персональных данных</label>
+            </div>
+            <a href="#" class="btn btn-1 mt-3 d-flex flex-row text-white me-3 mt-5 justify-content-center align-items-center">
+              Оформить подписку
+            </a>
+        </div>
+        <div class="column2">
+            <div class="d-flex flex-row">
+              <div class="col-md">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5>1 месяц</h5>
+                        <h3 class="card-title mb-3">199 ₽</h3>
+                        <h5>199 ₽/месяц</h5>
+                    </div>
+                </div>
+              </div>
+              <div class="col-md">
+                <div class="card ms-4">
+                  <div class="card-body text-center">
+                      <h5>3 месяца</h5>
+                      <h3 class="card-title mb-3">529 ₽</h3>
+                      <h5>176 ₽/месяц</h5>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="d-flex flex-row mt-4">
+            <div class="col-md">
+              <div class="card">
+                <div class="card-body text-center">
+                    <h5>6 месяцев</h5>
+                    <h3 class="card-title mb-3">999 ₽</h3>
+                    <h5>166 ₽/месяц</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="card ms-4 card-4">
+                <div class="card-body text-center">
+                  <h5>12 месяцев</h5>
+                  <h3 class="card-title mb-3">1790 ₽</h3>
+                  <h5>169 ₽/месяц</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+        </div>
+        </div>
+      </div>
+      </div>
+    </section>
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 ">
+      <div class="container">
+        <div class="d-flex flex-row justify-content-between">
+          <div class="col-md-4_d-flex_align-items-center d-flex flex-row">
+            <p>Live.TV © 2021 Все права защищены</p>
+            <p class="text-decoration-underline ms-4">Политика конфиденциальности</p>
+          </div>
+          <div class="nav col-md-4 justify-content-end list-unstyled d-flex sot-seti">
+            <img src="./assets/img/facebook.svg" alt="">
+            <img src="./assets/img/instagram.svg" alt="" class="ms-4">
+            <img src="./assets/img/youtube.svg" alt="" class="ms-4">
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
